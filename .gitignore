@@ -1,0 +1,20 @@
+# OS & editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Node
+node_modules/
+
+# keluaran lokal skrip
+og/
+.env
+.env.*

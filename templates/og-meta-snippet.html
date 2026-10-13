@@ -1,0 +1,36 @@
+<!--
+  ============================================================================
+  KARTU SOSIAL (og:image) — TEMPEL DI DALAM <head> index.html
+  ============================================================================
+  Tujuan: saat tautan situsmu dibagikan di WhatsApp, X/Twitter, Facebook,
+  LinkedIn, atau Discord, yang muncul adalah kartu bagus dengan judul +
+  deskripsi + gambar — bukan tautan polos.
+
+  Langkah:
+    1. Buat kartunya:
+         python3 scripts/make_og.py --init     # buat og.json contoh, lalu sunting
+         python3 scripts/make_og.py            # hasil di folder og/
+    2. Salin kartu ke folder yang IKUT ter-build:
+         • proyek Vite :  public/og-image.png   ← BUKAN assets/
+                          (Vite hanya menyalin folder public/ ke dist/)
+         • situs statis:  assets/og-image.png
+    3. Ganti nilai di bawah:
+         • BASE  → domain + sub-path repo, mis. superrrkyy.github.io/cryptoku
+         • JUDUL / DESKRIPSI → sesuai situs
+    4. Commit & push → tunggu deploy selesai.
+    5. Uji: https://www.opengraph.xyz/  (tempel URL situsmu)
+
+  Catatan: og:image harus URL ABSOLUT (https://…) — bukan path relatif.
+  ============================================================================
+-->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://BASE/" />
+<meta property="og:title" content="JUDUL SITUS" />
+<meta property="og:description" content="Deskripsi singkat 1–2 kalimat tentang situs ini." />
+<meta property="og:image" content="https://BASE/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="JUDUL SITUS" />
+<meta name="twitter:description" content="Deskripsi singkat 1–2 kalimat tentang situs ini." />
+<meta name="twitter:image" content="https://BASE/og-image.png" />

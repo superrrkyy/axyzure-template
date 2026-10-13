@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Typecheck · Test · Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22        # LTS — sesuaikan bila perlu (20/22/24)
+          cache: npm
+
+      - name: Pasang dependensi
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Cek skrip wajib di package.json
+        run: |
+          node -e "const s=(require('./package.json').scripts||{});const need=['typecheck','test','build'];const miss=need.filter(n=>!s[n]);if(miss.length){console.error('✗ package.json belum punya skrip: '+miss.join(', '));process.exit(1)}console.log('✓ skrip typecheck/test/build lengkap')"
+
+      - name: Pemeriksaan tipe
+        run: npm run typecheck
+
+      - name: Unit test
+        run: npm test
+
+      - name: Build produksi
+        run: npm run build

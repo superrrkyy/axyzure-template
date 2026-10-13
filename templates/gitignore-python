@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# data lokal (jangan pernah di-commit)
+api_key.json
+*.db
+*.sqlite
+*.sqlite3
+
+# test & cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# environment
+.env
+.env.*
+!.env.example
+
+# editor & OS
+.idea/
+.vscode/
+.DS_Store
